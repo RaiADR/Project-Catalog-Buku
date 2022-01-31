@@ -1,6 +1,7 @@
 package com.anabatic.catalog.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,9 +15,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "book")
 public class Book extends AbstractBaseEntity {

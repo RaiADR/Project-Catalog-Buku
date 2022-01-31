@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.anabatic.catalog.domain.Category;
+import com.anabatic.catalog.dto.BookDetailResponseDTO;
 import com.anabatic.catalog.dto.CategoryCreateUpdateRequestDTO;
 import com.anabatic.catalog.dto.CategoryListResponseDTO;
 import com.anabatic.catalog.dto.ResultPageResponseDTO;
@@ -76,6 +77,18 @@ public class CategoryServiceImpl implements CategoryService{
 			dto.setCode(c.getCode());
 			dto.setName(c.getName());
 			dto.setDescription(c.getDescription());
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<CategoryListResponseDTO> getAllCategories() {
+		List<Category> categories = categoryRepository.findAll();
+		return categories.stream().map((b)->{
+			CategoryListResponseDTO dto = new CategoryListResponseDTO();
+			dto.setCode(b.getCode());
+			dto.setDescription(b.getDescription());
+			dto.setName(b.getName());
 			return dto;
 		}).collect(Collectors.toList());
 	}

@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.anabatic.catalog.domain.Address;
 import com.anabatic.catalog.domain.Author;
+import com.anabatic.catalog.domain.Book;
 import com.anabatic.catalog.dto.AuthorCreateRequestDTO;
 import com.anabatic.catalog.dto.AuthorResponseDTO;
 import com.anabatic.catalog.dto.AuthorUpdateRequestDTO;
+import com.anabatic.catalog.dto.BookDetailResponseDTO;
 import com.anabatic.catalog.exception.BadRequestException;
 import com.anabatic.catalog.exception.ResourceNotFoundException;
 import com.anabatic.catalog.repository.AuthorRepository;
@@ -117,6 +119,24 @@ public class AuthorServiceImpl implements AuthorService {
 			dto.setBirthDate(a.getBirthDate().toEpochDay());
 			return dto;
 		}).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<AuthorResponseDTO> getAllAuthors() {
+		List<Author> authors = authorRepository.findAll();
+		return authors.stream().map((b)->{
+			AuthorResponseDTO dto = new AuthorResponseDTO();
+			dto.setAuthorName(b.getName());
+			dto.setBirthDate(b.getBirthDate().toEpochDay());
+			dto.setAuthorSecureId(b.getSecureId());
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Author> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

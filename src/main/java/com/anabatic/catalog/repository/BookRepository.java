@@ -9,15 +9,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.anabatic.catalog.domain.Book;
+import com.anabatic.catalog.dto.BookCreateRequestDTO;
+import com.anabatic.catalog.dto.BookSaveRequestDTO;
 
 public interface BookRepository extends JpaRepository<Book, Long>{
 
 //	
-	public Optional<Book> findById(Long id);
+//	public Optional<Book> findById(Long id);
 	
 	//SQL  :select b from book b where b.secure_id = :id
 	//JPQL :select b FROM Book b WHERE b.secureId=:id
-	public Optional<Book> findBySecureId(String bookId);
+
+	public Optional<Book> findBySecureId(String Id);
 //	
 	
 	
@@ -31,8 +34,13 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 //	public List<Book> findAll();
 //	
 //	public void save(Book book);
-//	
+////	
 //	public void update(Book book);
 //	
 //	public void delete(Long bookId);
+
+
+
+
+
 }

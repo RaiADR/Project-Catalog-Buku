@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+
+<title>myBOOKS</title>
+</head>
+<style>
+	body{
+	font-family: 'PT Sans', sans-serif;
+	}
+	::-webkit-scrollbar {
+  	display: none;
+	}
+	
+</style>
+<body class="bg-light">
+	<nav class="navbar sticky-top navbar-dark bg-dark">
+  <!-- Navbar content -->
+  		<div class="container-fluid" style="margin: 0px 104.500px 0px 104.500px">
+			<h2 style="font-family: 'Pacifico', cursive" class="text-light ">myBOOKS</h2>
+<!-- 				<p style="font-family: 'Pacifico', cursive" class="text-light">Save your favorite books mean saving your memories &hearts; </p> -->
+			<h5 style="font-family: 'Pacifico', cursive"  class="text-light ">Save your favorite books mean saving your memories &hearts; </h5>
+			<a th:href="@{list}"class="btn btn-secondary" >ListBook</a>
+ 		</div>
+	</nav>
+	
+	<div class="container border rounded" style="padding: 20px; margin-top: 20px">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="container">
+					<form method="POST" th:action="@{/book/addBook}" th:object="${bookCreateDTO}" >
+						<h1 class="text-center">Add Book</h1>
+				 	 	<input type="hidden" th:field="*{id}" class="form-control " placeholder="Input Book Title">
+						<div class="mb-3 row">
+				 	 		<label for="exampleFormControlInput1" class="col-sm-2 col-form-label" >Book Title</label>
+				 	 			<div class="col-sm-10">
+				 					<input type="text" th:field="*{bookTitle}" class="form-control " placeholder="Input Book Title">
+				 	 			</div>
+						</div>
+						<div class="mb-3 row">
+				 	 		<label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Author Id</label>
+				 	 			<div class="col-sm-10">
+				 				<select class="form-select" th:field="*{authorId}" aria-label="Default select example" required>
+				 				 	  <option value="" selected>Select Author</option>
+									  <option th:each="author : ${authors}"   th:value="${author.authorSecureId}" th:text="${author.authorName}">One</option>
+									</select>
+									<!-- <input type="text" th:field="*{authorId}" class="form-control " placeholder="Input Author Id..."> -->
+									<a href="#"class="link-primary" >add new author</a>
+				 	 			</div>
+						</div>
+						<div class="mb-3 row">
+				 	 		<label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Category</label>
+				 	 			<div class="col-sm-10">
+				 					<select class="form-select" th:field="*{categoryCode}" aria-label="Default select example" required>
+									  <option value="" selected>Select Category</option>
+									  <option  th:each="category : ${categories}"  th:value="${category.code}" th:text="${category.name}">One</option>
+									</select>
+									<!-- <input type="text" th:field="*{category}" class="form-control " placeholder="Input Category Code..."> -->
+									<a href="#"class="link-primary" >add new category</a>
+				 	 			</div>
+						</div>
+						<div class="mb-3 row">
+				 	 		<label for="exampleFormControlInput1" class="col-sm-2 col-form-label">Publisher Id</label>
+				 	 			<div class="col-sm-10">
+				 					<select class="form-select" th:field="*{publisherId}" aria-label="Default select example" required>
+				 					  <option value="" selected>Select Publisher</option>
+									  <option  th:each="publisher, iteration : ${publishers}"  th:value="${publisher.publisherId}" th:text="${publisher.publisherName}">One</option>
+									</select>
+									<!-- <input type="text" th:field="*{publisherId}" class="form-control " placeholder="Input Publisher Id..."> -->
+				 	 				<a href="#"class="link-primary" >add new publisher</a>
+				 	 			</div>
+						</div>
+						
+						
+						<div class="mb-3 row">
+				  			<label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Description</label>
+				  				<div class="col-sm-10">
+				  					<textarea th:field="*{description}" class="form-control" rows="5"></textarea>
+				  				</div>
+						</div>
+							<button type="submit" class="btn btn-success float-end">Save</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+</html>

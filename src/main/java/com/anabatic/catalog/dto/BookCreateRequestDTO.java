@@ -21,6 +21,8 @@ public class BookCreateRequestDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = -6969091067725000624L;
 
+	private Long id;
+	
 	@NotBlank(message = "tidak boleh kosong !")
 	public String bookTitle;
 	
@@ -35,5 +37,6 @@ public class BookCreateRequestDTO implements Serializable {
 	
 	@JsonProperty("synopsis")
 	private String description;
+	
 
 }

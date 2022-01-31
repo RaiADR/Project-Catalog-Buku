@@ -21,7 +21,7 @@ public class PublisherCreateRequestDTO implements Serializable{
 	private static final long serialVersionUID = 2264370289125784518L;
 
 	@NotBlank
-	private String publisherName;
+	private String name;
 	
 	@NotBlank
 	private String companyName;

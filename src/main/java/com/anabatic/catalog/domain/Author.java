@@ -48,10 +48,10 @@ public class Author extends AbstractBaseEntity{
 
 	
 	
-	@Column(name = "authorName", nullable=false, columnDefinition = "varchar(300)")
+	@Column(name = "author_name", nullable=false, columnDefinition = "varchar(300)")
 	private String name;
 	
-	@Column(name = "birthDate", nullable=false)
+	@Column(name = "birth_date", nullable=false)
 	private LocalDate birthDate;
 
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)

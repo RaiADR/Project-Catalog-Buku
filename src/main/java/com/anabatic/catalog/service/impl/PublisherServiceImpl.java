@@ -33,7 +33,7 @@ public class PublisherServiceImpl implements PublisherService {
 	public void createPublisher(PublisherCreateRequestDTO dto) {
 		// TODO Auto-generated method stub
 		Publisher publisher = new Publisher();
-		publisher.setName(dto.getPublisherName());
+		publisher.setName(dto.getName());
 		publisher.setCompanyName(dto.getCompanyName());
 		publisher.setAddress(dto.getAddress());
 
@@ -85,5 +85,23 @@ public class PublisherServiceImpl implements PublisherService {
 		dto.setPublisherId(publisher.getSecureId());
 		dto.setPublisherName(publisher.getName());
 		return dto;
+	}
+
+	@Override
+	public List<Publisher> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PublisherListResponseDTO> getAllCategories() {
+		List<Publisher> publishers = publisherRepository.findAll();
+		return publishers.stream().map((b)->{
+			PublisherListResponseDTO dto = new PublisherListResponseDTO();
+			dto.setCompanyName(b.getName());
+			dto.setPublisherId(b.getSecureId());
+			dto.setPublisherName(b.getName());
+			return dto;
+		}).collect(Collectors.toList());
 	}
 }

@@ -1,7 +1,7 @@
 package com.anabatic.catalog.service;
 
-import com.anabatic.catalog.dto.PublisherCreateRequestDTO;
-import com.anabatic.catalog.dto.PublisherUpdateRequestDTO;
+import java.util.List;
+
 import com.anabatic.catalog.domain.Publisher;
 import com.anabatic.catalog.dto.*;
 
@@ -16,4 +16,8 @@ public interface PublisherService {
 	public ResultPageResponseDTO<PublisherListResponseDTO> findPublisherList(Integer pages, Integer limit,String sortBy, String direction, String publisherName);
 	
 	public PublisherResponseDTO constructDTO(Publisher publisher);
+
+	public List<Publisher> findAll();
+
+	public List<PublisherListResponseDTO> getAllCategories();
 }

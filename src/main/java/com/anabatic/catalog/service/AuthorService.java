@@ -20,4 +20,8 @@ public interface AuthorService {
 	public List<Author> findAuthors(List<String> authorIdList);
 	
 	public List<AuthorResponseDTO> constructDTO(List<Author> authors);
+
+	public List<Author> findAll();
+	
+	public List<AuthorResponseDTO> getAllAuthors();
 }

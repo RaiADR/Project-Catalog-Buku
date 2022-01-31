@@ -17,7 +17,6 @@ public class AuthorCreateRequestDTO {
 	@NotBlank
 	private String authorName;
 	
-	@NotNull
 	private Long birthDate;
 	
 	private List<AddressCreateRequestDTO> addresses;

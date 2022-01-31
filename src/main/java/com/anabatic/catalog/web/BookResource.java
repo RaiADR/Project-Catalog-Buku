@@ -32,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class BookResource {
 	
+	private static final String BookId = null;
 	private final BookService bookService;
 	
 	@GetMapping("/v1/book/{bookId}")
@@ -66,7 +67,8 @@ public class BookResource {
 	
 	@PostMapping("/v1/book")
 	public ResponseEntity<Void> createNewBook(@RequestBody BookCreateRequestDTO dto){
-		bookService.createNewBook(dto);
+		Long bookId = null;
+		bookService.createNewBook(bookId, dto);
 		return ResponseEntity.created(URI.create("/v1/book")).build();
 		}
 	
@@ -78,8 +80,8 @@ public class BookResource {
 	
 	// PUT BOOK
 	@PutMapping("/v1/book/{bookId}")
-	public ResponseEntity<Void> updateBook(@PathVariable("bookId") String bookId, @RequestBody BookUpdateRequestDTO dto){
-		bookService.updateBook(bookId, dto);
+	public ResponseEntity<Void> updateBook(@PathVariable("bookId") Long bookId, @RequestBody BookCreateRequestDTO dto){
+		bookService.createNewBook(bookId, dto);
 		return ResponseEntity.ok().build();
 	}
 	
